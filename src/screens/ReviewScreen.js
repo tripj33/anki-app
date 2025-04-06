@@ -1,10 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, Alert } from 'react-native';
+import FlashcardReview from '../components/FlashcardReview';
 
 export default function ReviewScreen() {
+  const sampleQuestion = 'What is the capital of France?';
+  const sampleAnswer = 'Paris';
+
+  const handleRate = (rating) => {
+    console.log('User rated:', rating);
+    Alert.alert('Rating', `You selected: ${rating}`);
+    // TODO: Update spaced repetition algorithm, fetch next card
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Review Screen</Text>
+      <FlashcardReview
+        question={sampleQuestion}
+        answer={sampleAnswer}
+        onRate={handleRate}
+      />
     </View>
   );
 }
@@ -12,10 +26,6 @@ export default function ReviewScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 24,
+    backgroundColor: '#f2f2f2',
   },
 });
