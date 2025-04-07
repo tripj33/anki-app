@@ -3,7 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from '../screens/HomeScreen';
+import OnboardingScreen from '../screens/OnboardingScreen';
+import AuthScreen from '../screens/AuthScreen';
 import DeckScreen from '../screens/DeckScreen';
 import ReviewScreen from '../screens/ReviewScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -15,7 +16,6 @@ const Tab = createBottomTabNavigator();
 function MainTabs() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Decks" component={DeckScreen} />
       <Tab.Screen name="Review" component={ReviewScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
@@ -27,6 +27,16 @@ export default function RootNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Onboarding"
+          component={OnboardingScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Auth"
+          component={AuthScreen}
+          options={{ title: 'Login / Sign Up' }}
+        />
         <Stack.Screen
           name="Main"
           component={MainTabs}
