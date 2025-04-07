@@ -1,0 +1,6 @@
+0000000000000000000000000000000000000000 0417f15f63c66f51b48e023a75d83cf88750244f Jake <jjjanik3@gmail.com> 1743964709 -0500	commit (initial): Initial commit
+0417f15f63c66f51b48e023a75d83cf88750244f a63334598c184492b72c565045f45a75196525e4 Jake <jjjanik3@gmail.com> 1743965376 -0500	commit: Initial scaffold: navigation, screens, folder structure, Memory Bank
+a63334598c184492b72c565045f45a75196525e4 b25bccb9a9b04552beacfbed7f01cdbd5844c6c6 Jake <jjjanik3@gmail.com> 1743968216 -0500	commit: Add Supabase integration, auth and deck stores, update Memory Bank
+b25bccb9a9b04552beacfbed7f01cdbd5844c6c6 54df385aee0b63bf6626019b4e7ccd41e8aa6426 Jake <jjjanik3@gmail.com> 1743969429 -0500	commit: Add FlashcardReview component and integrate into Review screen
+54df385aee0b63bf6626019b4e7ccd41e8aa6426 f459141e1146633d1a9140f012842a0e64968a53 Jake <jjjanik3@gmail.com> 1743975006 -0500	commit: Add LLM API placeholder, caching store, and update Memory Bank
+f459141e1146633d1a9140f012842a0e64968a53 bafd108e302a2a6accdc37c78298c3c6a9716968 Jake <jjjanik3@gmail.com> 1743977202 -0500	commit: Update Memory Bank with persistent Android SDK build issue and next steps

@@ -37,6 +37,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+<<<<<<< HEAD
+=======
+    },
+    "extra": {
+      "EXPO_ROUTER_APP_ROOT": "app"
+>>>>>>> 4580cdf (Initialize repo and update Memory Bank with latest Expo Router environment variable injection attempts and errors)
     }
   }
 }
