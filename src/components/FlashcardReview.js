@@ -1,15 +1,72 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Animated, Easing } from 'react-native';
 
-export default function FlashcardReview({ question, answer, onRate }) {
+export default function FlashcardReview({ question, answer, onRate, loading, error }) {
   const [showAnswer, setShowAnswer] = useState(false);
+  const flipAnim = useState(new Animated.Value(0))[0];
+
+  const flipCard = () => {
+    Animated.timing(flipAnim, {
+      toValue: showAnswer ? 0 : 1,
+      duration: 300,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    }).start();
+    setShowAnswer(!showAnswer);
+  };
+
+  const frontInterpolate = flipAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '180deg'],
+  });
+
+  const backInterpolate = flipAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['180deg', '360deg'],
+  });
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ color: 'red' }}>{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => setShowAnswer(!showAnswer)} style={styles.card}>
-        <Text style={styles.text}>
-          {showAnswer ? answer : question}
-        </Text>
+      <TouchableOpacity onPress={flipCard}>
+        <Animated.View
+          style={[
+            styles.card,
+            {
+              transform: [{ rotateY: frontInterpolate }],
+              backfaceVisibility: 'hidden',
+              position: 'absolute',
+            },
+          ]}
+        >
+          <Text style={styles.text}>{question}</Text>
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.card,
+            {
+              transform: [{ rotateY: backInterpolate }],
+              backfaceVisibility: 'hidden',
+            },
+          ]}
+        >
+          <Text style={styles.text}>{answer}</Text>
+        </Animated.View>
       </TouchableOpacity>
 
       {showAnswer && (
@@ -42,6 +99,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     shadowOffset: { width: 0, height: 2 },
+    width: 300,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: 20,
